@@ -1,6 +1,7 @@
 
 const mongoose=require('mongoose')
 const user=require('./usermodel')
+const Category = require('./categorymodel')
 let BlogSchema=new mongoose.Schema({
     title:{
         type:String,
@@ -18,6 +19,12 @@ let BlogSchema=new mongoose.Schema({
     },
     image:{
         type:String,
+    },
+    category:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:Category
+        
+
     }
    
 })

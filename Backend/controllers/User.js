@@ -1,4 +1,7 @@
-const Blog=require('../models/blogmodel')
+const { default: mongoose } = require('mongoose');
+const Blog=require('../models/blogmodel');
+const User = require('../models/usermodel');
+const Category = require('../models/categorymodel');
  
  
  
@@ -18,5 +21,22 @@ catch(err){
 }
 }
 
+const userBlog=async(req,res,next)=>{
+    try{
+        console.log('running');
+        let id=new mongoose.Types.ObjectId(req.params.id)
+        
+        console.log(id);
+        let response=await Blog.find({author:id})
+        
+        console.log(response);
+        res.json(response)
+    }
+    catch(e){
+        console.log(e);
+    }
+}
 
-module.exports={addBlog}
+
+
+module.exports={addBlog,userBlog}

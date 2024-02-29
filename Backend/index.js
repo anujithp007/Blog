@@ -5,7 +5,7 @@ const cors =require('cors')
 const User=require('./models/usermodel')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
-const { addBlog } = require('./controllers/User')
+const { addBlog, userBlog } = require('./controllers/User')
 const {addCategory, findCategory}=require('./controllers/Category')
 mongoose.connect('mongodb://127.0.0.1:27017/blog')
 //   .then(() => console.log('Connected!'));
@@ -90,9 +90,11 @@ app.get('/find/:id',verifyToken,async(req,res)=>{
 })
 
 
-app.post('/addblog',addBlog)
-app.post('/addcategory',addCategory)
-app.get('/findcategory',findCategory)
+app.post('/addblog',verifyToken,addBlog)
+app.post('/addcategory',verifyToken,addCategory)
+app.get('/findcategory',verifyToken,findCategory)
+app.get('/userblogs/:id',verifyToken,userBlog)
+
 
 app.listen(5000,()=>{
     console.log('server connected');
