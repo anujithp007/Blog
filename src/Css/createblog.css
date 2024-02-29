@@ -1,0 +1,12 @@
+.bg1{
+    background-image: url('../p1.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+::placeholder{
+    font-size: 15px;
+    text-align: center;
+    margin: auto;
+    padding-top: 3px;
+   
+}
