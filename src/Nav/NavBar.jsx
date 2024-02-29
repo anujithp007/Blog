@@ -58,7 +58,7 @@ export const NavBar = () => {
    {toggle &&
    
    <aside className={`w-fit h-screen sidebar ${toggle ? '' : 'hidden'}`}>
-      <div class="h-full px-3 py-4 overflow-y-auto dark:bg-[#22857bb4]">
+      <div class="h-full px-3 py-4 overflow-y-auto ">
          <ul class=" flex-col gap-7 space-y-2 font-medium">
          <li>
                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

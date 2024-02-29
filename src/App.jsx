@@ -8,6 +8,7 @@ import Adminhome from './adminpage/Adminhome';
 import AdminNav from './adminpage/AdminNav';
 import AdminCategory from './adminpage/AdminCategory';
 import { NavBar } from './Nav/NavBar';
+import Myblogs from './pages/Myblogs';
 
 
 
@@ -24,6 +25,7 @@ const App = () => {
   <Route path='/home' element={<Home/>}></Route>
 
   <Route path='/blogcreate' element={<PageCreation/>}></Route>
+  <Route path='/myblogs' element={<Myblogs/>}></Route>
  </Route>
  <Route path='/admin' element={<AdminNav/>}>
   <Route path='adminhome' element={<Adminhome/>}></Route>
