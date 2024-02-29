@@ -92,7 +92,7 @@ app.get('/find/:id',verifyToken,async(req,res)=>{
 
 app.post('/addblog',verifyToken,addBlog)
 app.post('/addcategory',verifyToken,addCategory)
-app.get('/findcategory',verifyToken,findCategory)
+app.get('/findcategory',findCategory)
 app.get('/userblogs/:id',verifyToken,userBlog)
 
 
