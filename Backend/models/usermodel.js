@@ -22,6 +22,10 @@ let userSchema=new mongoose.Schema({
         type:String,
         default:'user',
         required:true
+    },
+    file:{
+        type:String,
+        
     }
 
 })
