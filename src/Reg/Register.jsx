@@ -10,24 +10,43 @@ const Register = () => {
   
  const handleChange=(e)=>{
  
-  setSignup({...signup,[e.target.name]:e.target.value})
-  console.log(signup);
-}
-const handleSubmit=async(e)=>{
-  e.preventDefault()
-  setSignup(signup)
-  console.log(signup);
-  if(signup.firstname&&signup.email&&signup.password&&signup.dob){
-        let response=await axios.post('http://localhost:5000/register',signup)
-        console.log(response);
-        alert('Registration success')
-        navigate('/')
+  if (e.target.name === 'file') {
+    // For file input, store the file object
+    setSignup({ ...signup, file: e.target.files[0] });
+  } else {
+    // For text inputs, update the state with the new value
+    setSignup({ ...signup, [e.target.name]: e.target.value });
   }
-  else{
-    alert('fill all fiels')
+}
 
-  }
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    // Create FormData object
+    const formData = new FormData();
+  
+    // Append form data
+    formData.append('firstname', signup.firstname);
+    formData.append('email', signup.email);
+    formData.append('password', signup.password);
+    formData.append('dob', signup.dob);
+    formData.append('file', signup.file);
+  
+    try {
+      // Make a POST request using axios with FormData
+      const response = await axios.post('http://localhost:5000/register', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+  
+      console.log(response);
+      alert('Registration success');
+      navigate('/');
+    } catch (error) {
+      console.error('Error registering: ', error);
+      alert('An error occurred');
+    }}
 
 
 
@@ -68,6 +87,10 @@ theme="light"
   <div class="mb-5">
     <label for="dob" class="block mb-2 text-sm font-medium text-white">Date Of Birth</label>
     <input onChange={(e)=>handleChange(e)} type="date" name='dob' id="dob" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="your email @.com" required />
+  </div>
+  <div class="mb-5">
+    <label for="file" class="block mb-2 text-sm font-medium text-white">Avathar</label>
+    <input onChange={(e)=>handleChange(e)} type="file" name='file' id="dob" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="your email @.com" required />
   </div>
   
   <div class="flex items-start mb-5">
