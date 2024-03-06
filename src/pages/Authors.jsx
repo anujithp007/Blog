@@ -22,7 +22,9 @@ const Authors = () => {
       {data.map((item)=>(
         <>
 
-      {/* <img src={`http://localhost:5000/${item.file}`} alt="asdda" /> */}
+      <img src={`http://localhost:5000/${item.file}`} alt="asdda" />
+      <h1></h1>
+      
         </>
       ))}
     </div>
