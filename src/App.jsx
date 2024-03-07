@@ -12,6 +12,8 @@ import Myblogs from './pages/Myblogs';
 import DetailPage from './Detailpage/DetailPage';
 import Allblogs from './pages/Allblogs';
 import Authors from "./pages/Authors";
+import Profile from './pages/Profile';
+
 
 
 
@@ -32,6 +34,7 @@ const App = () => {
   <Route path='/myblogs' element={<Myblogs/>}></Route>
   <Route path='/detailblog/:id' element={<DetailPage/>}></Route>
   <Route path='/authors' element={<Authors/>}></Route>
+  <Route path='/profile' element={<Profile/>}></Route>
     
  </Route>
  <Route path='/admin' element={<AdminNav/>}>
