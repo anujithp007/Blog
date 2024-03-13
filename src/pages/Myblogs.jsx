@@ -44,11 +44,13 @@ const Myblogs = () => {
     setRefresh(!refresh)
     console.log(response);
   }
+ 
   
   
   return (
-    <>
+    <div className='bg22'>
     <Logo/>
+    <div className='font-serif text-6xl text-center text-orange-800 '>My Blogs</div>
     <div className='flex flex-wrap justify-center align-items-center mt-8 gap-5'>
       {loading ? (
         <div role="status">
@@ -65,26 +67,32 @@ const Myblogs = () => {
             <>
           <div  key={index} className=''>
             <div className="max-w-sm rounded overflow-hidden shadow-lg">
-          <Link  to={`/detailblog/${item._id}`}>
-              <img className="object-cover w-[19rem] h-[10rem]" src={item.image} alt="Sunset in the mountains" />
-              <div className="px-6 py-4">
+         
+            <Link  to={`/detailblog/${item._id}`}> <img className="object-cover w-[19rem] h-[10rem]" src={item.image} alt="Sunset in the mountains" /></Link>
+              <section className="myblogCol  px-6 py-4">
                 <div className="font-bold text-[2rem] border-b-[6px] border-b-slate-600 mb-2">{item.title}</div>
                 <div className="font-bold text-xl mb-2">Category:{item.category.category}</div>
                 <div className="flex items-center gap-2 font-bold text-xl mb-2">By: <span className='font-semibold text-[18px]'>{item.author.email}</span>
                </div>
+                <div className="flex items-center gap-2 font-bold text-lg mb-2">📅: <span className='font-semibold text-[15px]'>{new Date(item.createdDate).toLocaleDateString()}</span>
+             
 
-                
-              </div>
+                </div>
+                <div className='svgdlt w-full bg-[#D95652]'>
+
+                <svg onClick={() => handleDelete(item._id)} xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-trash3 m-auto p-2   " viewBox="0 0 16 16">
+                          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                </div>
+              </section>
               {item.tags && item.tags.length > 0 && item.tags.map((tag, tagIndex) => (
                 <span key={tagIndex} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
     #{tag}
   </span>
 ))}
 
-          </Link>
-          <svg onClick={() => handleDelete(item._id)} xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-trash3 float-right  " viewBox="0 0 16 16">
-                          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-                        </svg>
+          
+         
             </div>
           </div>
                           
@@ -93,7 +101,7 @@ const Myblogs = () => {
 ))
 )}
     </div>
-</>
+</div>
   );
 };
 

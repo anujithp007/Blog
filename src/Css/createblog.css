@@ -10,3 +10,19 @@
     padding-top: 3px;
    
 }
+.bg22{
+    background-image: url('../—Pngtree—clean\ watercolor\ splash\ company\ profile_1441179.png');
+    background-repeat: no-repeat;
+    background-size: cover ;
+}
+.myblogCol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.svgdlt{
+    border-radius: 18px;
+    box-shadow: -1px 2px 5px 0px;
+}

@@ -13,6 +13,10 @@ import DetailPage from './Detailpage/DetailPage';
 import Allblogs from './pages/Allblogs';
 import Authors from "./pages/Authors";
 import Profile from './pages/Profile';
+import Update from './Update/Update';
+import UpdateProfile from './Update/UpdateProfile';
+import AdminDetail from './adminpage/AdminDetail';
+import Adminauthors from './adminpage/Adminauthors';
 
 
 
@@ -35,11 +39,15 @@ const App = () => {
   <Route path='/detailblog/:id' element={<DetailPage/>}></Route>
   <Route path='/authors' element={<Authors/>}></Route>
   <Route path='/profile' element={<Profile/>}></Route>
-    
+  <Route path='/updateprofiles' element={<UpdateProfile/>}></Route>
+  
  </Route>
+  <Route path='/update/:id' element={<Update/>}></Route>
  <Route path='/admin' element={<AdminNav/>}>
   <Route path='adminhome' element={<Adminhome/>}></Route>
   <Route path='admincategory' element={<AdminCategory/>}></Route>
+  <Route path='admindetail/:id' element={<AdminDetail/>}></Route>
+  <Route path='adminauthors' element={<Adminauthors/>}></Route>
  </Route>
   
 </Routes>

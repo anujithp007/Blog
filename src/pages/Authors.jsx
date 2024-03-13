@@ -19,7 +19,7 @@ const Authors = () => {
 
   console.log(data);
   return (
-    <div>
+    <div className='bg22'>
       <Logo/>
       <div className='flex items-center justify-center flex-wrap gap-2'>
 

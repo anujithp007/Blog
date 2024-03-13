@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Logo from '../Componets/Logo';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     let id=localStorage.getItem('id')
@@ -28,8 +29,14 @@ const Profile = () => {
         fetchData()
         console.log(data,'tra');
     },[])
+    const date = new Date(data.dob);
+    const day = date.getUTCDate();
+    const month = date.getUTCMonth() + 1; // Months are zero-indexed, so we add 1
+    const year = date.getUTCFullYear();
+    
+    const formattedDate = `${day}/${month}/${year}`;
   return (
-    <>
+    <div className='bg22'>
     <Logo/>
     <div className='font-serif text-6xl text-center text-orange-800 '>Profile</div>
    
@@ -40,23 +47,28 @@ const Profile = () => {
     <a href="#">
         <img class="rounded-t-lg" src={`http://localhost:5000/${data.file}`} alt="hh" />
     </a>
-    <div class="p-5">
+    <div class=" p-5">
         <a href="#">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{data.firstname}</h5>
         </a>
+      
 
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">Email: <span>{data.email}</span></h5>
-        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Dob: <span>{data.dob}</span></h5>
+        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Dob: <span>{formattedDate}</span></h5>
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">NO.of Blogs: <span>{count}</span></h5>
-
+      <Link to={'/updateprofiles'}>
+      
+     <button  type="" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-24 mt-4 me-2 mb-2">Edit Profile</button>
+    </Link> 
+      </div>
 
     </div>
-</div>
+
 
     
 
 
-    </>
+    </div>
     
   )
 }

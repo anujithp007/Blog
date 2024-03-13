@@ -12,6 +12,7 @@ const PageCreation = () => {
   const[data,setData]=useState({
     
   })
+ 
 useEffect(()=>{
     const fetchData=async()=>{
         let response= await axios.get('http://localhost:5000/findcategory')
@@ -24,6 +25,7 @@ useEffect(()=>{
 
   const handlChange=(e)=>{
     setData({...data,[e.target.name]:e.target.value})
+    console.log(data);
 
   }
   const handleSubmit=async(e)=>{
@@ -36,6 +38,9 @@ useEffect(()=>{
             console.log(response);
             if(response){
                 toast.success('Blog Added')
+                setData('')
+                // window.location.reload();
+                
             }
         
             
@@ -67,7 +72,7 @@ useEffect(()=>{
             </label>
         </div>
         <div class="md:w-2/3">
-            <input onChange={handlChange} class="form-input  block w-full bg-[#ffffff85]  focus:bg-white" name='title' id="my-textfield" placeholder='enter your title' type="text" />
+            <input onChange={handlChange} value={data.title ? data.title : ''} class="form-input  block w-full bg-[#ffffff85]  focus:bg-white" name='title' id="my-textfield" placeholder='enter your title' type="text" />
            
         </div>
     </div>
@@ -85,11 +90,11 @@ useEffect(()=>{
 
         </div>
         <div className='md:w-2/3 '>
-        <select onChange={handlChange}  name='category' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-[#ffffff85]">
+        <select onClick={handlChange} value={data.content?data.content:''}  name='category' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-[#ffffff85]">
 <option value="" disabled>select</option>
         {cat.map((item)=>(
                       <option value={item._id}>{item.category}</option>
-            ))} 
+            ))}  
   
    
   </select>

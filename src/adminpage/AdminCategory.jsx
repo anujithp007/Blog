@@ -19,6 +19,7 @@ const AdminCategory = () => {
         catch{
 
         }
+        console.log(data);
       
     }
   return (
