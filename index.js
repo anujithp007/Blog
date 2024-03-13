@@ -5,7 +5,7 @@ const cors =require('cors')
 const User=require('./models/usermodel')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
-const { addBlog, userBlog, singleBlog, allBlogs, deleteBlog, findAuthor, profileView } = require('./controllers/User')
+const { addBlog, userBlog, singleBlog, allBlogs, deleteBlog, findAuthor, profileView, updateBlogs, updateProfiles } = require('./controllers/User')
 const {addCategory, findCategory}=require('./controllers/Category')
 mongoose.connect('mongodb://127.0.0.1:27017/blog')
 app.use(express.static('uploads')); 
@@ -124,6 +124,8 @@ app.get('/allblogs',allBlogs)
 app.delete('/deleteblog/:id',deleteBlog)
 app.get('/findauthors',findAuthor)
 app.get('/profileview/:id',profileView) 
+app.put('/updateblogs/:id',verifyToken,updateBlogs) 
+app.put('/updateprofiles/:id',verifyToken,updateProfiles) 
 
 
 app.listen(5000,()=>{

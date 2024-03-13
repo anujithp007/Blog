@@ -4,8 +4,8 @@ const User = require('../models/usermodel');
 const Category = require('../models/categorymodel');
 
 
-
- 
+const bcrypt=require('bcrypt')
+const saltrounds=10
  
  
  const addBlog=async(req,res)=>{
@@ -102,10 +102,53 @@ const userBlog=async(req,res,next)=>{
         res.json({response,counts})
 
     }
-    
+    const updateBlogs=async(req,res,next)=>{
+            try {
+                const { id } = req.params;
+                console.log(id,'up');
+                let userid=req.decoded.id
+                console.log(userid,'useriddd');
+                const updatedBlog = await Blog.findOneAndUpdate({ _id: id, author: userid }, req.body, { new: true });
+                console.log(updatedBlog,'uppp');
+                res.json(updatedBlog);
+
+            } catch (error) {
+                console.error(error.message);
+                res.status(500).send('Server Error');
+            }
+        }
+        const updateProfiles= async (req,res,next)=>{
+            
+                try{
+                    const id=req.params.id
+                    
+
+                    console.log(req.body);
+                    const hashPassword= await bcrypt.hash(req.body.password,saltrounds)
+                    console.log(hashPassword,'encrypted pw');
+                    
+                    let newUser= {
+                      ...req.body,
+                      password:hashPassword,
+                    //   file:req.file.filename
+                    }
+                    console.log(newUser);
+                    let response=await User.findByIdAndUpdate(id,newUser)
+                    res.json(response)
+                    console.log(response);
+                  }
+               
+            
+            catch(e){
+                console.log(e.message);
+
+            }
+
+        }
+        
 
 
 
 
 
-module.exports={addBlog,userBlog,singleBlog,allBlogs,deleteBlog,findAuthor,profileView}
+module.exports={addBlog,userBlog,singleBlog,allBlogs,deleteBlog,findAuthor,profileView,updateBlogs,updateProfiles}
